@@ -1,0 +1,8 @@
+#ye olde tower of hanoi
+def tower_of_hanoi(n, start, end):
+  if n == 1:
+    return move_disc(1, 3)
+  
+
+def move_disc(start, end):
+  print("Move 1 disk from rod " + start + "to rod" + end)
