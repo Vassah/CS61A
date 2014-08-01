@@ -1,0 +1,20 @@
+def zero(f):
+  return lambda x: x
+  
+def successor(n):
+  return lambda f: f(n(f) (x))
+
+def one(f):
+  return lambda f: f(zero(f) (x))
+
+def two(f):
+  return lambda f: f(f(zero(f) (x))
+#or
+def two_prime(f):
+  return lambda f: f(one(f) (x))
+
+def church_to_int(f):
+  return f(x + 1)(0)
+
+def church_add(f):
+  return 
