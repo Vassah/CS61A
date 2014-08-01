@@ -7,11 +7,16 @@ print(if_fun(5 < 6, 5, 6))
 print(if_fun(6 < 5, 5, 6))
 #yay
 
-def c(t):
+def c():
+  return False
 
-def tr(t):
+def tr():
+  return 1/0
 
-def fa(t):
+def fa():
+  return 1
 
+def with_if_fun(condition, true_res, false_res):
+  return if_fun(condition(), true_res(), false_res())
 
-def with_if_fun(condition, true_res, false_res)
+with_if_fun(c(), tr(), fa())
