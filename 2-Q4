@@ -16,5 +16,8 @@ def two_prime(f):
 def church_to_int(f):
   return f(x + 1)(0)
 
-def church_add(f):
-  return 
+def church_add(f, g):
+  return lambda h: f(g(zero(f)(x)))
+
+def church_mul(f, g):
+  return
