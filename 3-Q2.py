@@ -1,3 +1,5 @@
+empty = cons(None, None)
+
 def cons(a, b):
   def list(message):
     if message =='car':
@@ -11,9 +13,9 @@ def car(pair):
 def cdr(pair):
   return pair('cdr')
 
-#I assume the last cell of any linked list is cons(a, None).
+#I assume the last cell of any linked list is cons(a, empty).
 def len(linklist):
-  if cdr(linklist) == None:
+  if cdr(linklist) == empty:
     return 1 #base case is to add 1 since there's still the car of this last cell to be counted.
   else:
     return 1 + len(cdr(linklist))
@@ -35,7 +37,7 @@ def starts_with(L, sL):
   def g(listic, sublistic):
     if car(listic) != car(sublistic):
       return False
-    elif cdr(sublistic) == None:
+    elif cdr(sublistic) == empty:
       return True
     else:
       return g(cdr(listic), cdr(sublistic))
@@ -61,15 +63,43 @@ def has_sublist(lz, slz):
   def aux(listic, sublistic, posis):
     if car(listic) != car(sublistic):
       return coaux(listic, posis)
-    elif cdr(sublistic) == None
+    elif cdr(sublistic) == empty
       return True
     else:
       return aux(cdr(listic), cdr(sublistic), posis)
   def coaux(listic, sublistic):
     if car(listic) == car(sublistic):
       return aux(listic, sublistic)
-    elif cdr(listic) == None
+    elif cdr(listic) == empty
       return False
     else:
       return coaux(cdr(listic), sublistic)
   return coaux(lz, slz)
+
+has_sublist(empty, empty)
+#should be True
+has_sublist(x, empty)
+#should be True
+has_sublist(x, cons(2, cons(3, empty)))
+#should be False
+has_sublist(x, cons('A', cons('T', empty)))
+#should be False
+has_sublist(x, cons('G', cons('T', cons('T', empty))))
+#should be True
+has_sublist(cons(1, cons(2, cons(3, empty))), cons(2, empty))
+#should be True
+has_sublist(x, cons('A', x))
+#should be False
+
+def has_jhh(lz):
+  jhh = cons('C', cons('A', cons('T', cons('C', cons('A', cons('T', None))))))
+  return has_sublist(lz, jhh)
+
+dna = cons('C', cons('A', cons('T', empty)))
+dna = cons('C', cons('A', cons('T', cons('G', empty))))
+has_jhh(dna)
+#should be False
+dna = cons('T', cons('C', cons('A', cons('T', cons('G', empty)))))
+dna = cons('G', cons('T', cons('A', cons('C', cons('A', dna)))))
+has_jhh(dna)
+#should be True
