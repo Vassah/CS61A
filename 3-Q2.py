@@ -35,7 +35,7 @@ def starts_with(L, sL):
   def g(listic, sublistic):
     if car(listic) != car(sublistic):
       return False
-    elif cdr(listic) == None:
+    elif cdr(sublistic) == None:
       return True
     else:
       return g(cdr(listic), cdr(sublistic))
@@ -47,4 +47,29 @@ print_linked_list(x)
 starts_with(x, empty)
 #should be True
 starts_with(x, cons(3, empty))
-starts_with(
+#should be True
+starts_with(x, cons(6, empty))
+#should be False
+starts_with(x, x)
+#should be True
+starts_with(cons(2, empty), cons(2, cons(3, empty)))
+#should be False
+
+def has_sublist(lz, slz):
+  if len(L) < len(sL):
+    return False
+  def aux(listic, sublistic, posis):
+    if car(listic) != car(sublistic):
+      return coaux(listic, posis)
+    elif cdr(sublistic) == None
+      return True
+    else:
+      return aux(cdr(listic), cdr(sublistic), posis)
+  def coaux(listic, sublistic):
+    if car(listic) == car(sublistic):
+      return aux(listic, sublistic)
+    elif cdr(listic) == None
+      return False
+    else:
+      return coaux(cdr(listic), sublistic)
+  return coaux(lz, slz)
