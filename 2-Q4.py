@@ -39,8 +39,13 @@ def church_add(f, g):
     return lambda x: composer(f(h), g(h)) (x)
   return sumof
 
+#this is my ugly solution
 def church_mul(f, g):
-  return
+  i, n = 1,church_to_int(g)
+  acc = f
+  while i <= n:
+    acc = church_add(acc, f)
+  return acc
 
 print(church_to_int(successor(zero)))
 #should be 1
@@ -61,6 +66,6 @@ print(church_to_int(one))
 print(church_to_int(church_add(two, two)))
 #should be 4
 print(church_to_int(church_add(one, one)))
-#should be 2 but I keep getting 1 
+#should be 2
 print(church_to_int(church_add(one, two)))
-#should be 3 but I keep getting 2
+#should be 3
