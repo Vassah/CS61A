@@ -18,11 +18,11 @@ def zero(f):
   
 def successor(n):
   def h(f):
-    return lambda x: f_to_n(f, n(lambda x: x + 1)(0) + 1)
+    return lambda x: composer(n(f), f)(x)
   return h
 
 def one(f):
-  return lambda x: f(x)
+  return f
 
 def two(f):
   return lambda x: f(f(x))
@@ -31,13 +31,13 @@ def two_prime(f):
   return lambda x: f(one(f)) (x)
 
 def church_to_int(f):
-  successor = lambda x: x + 1
-  return f(successor)(0)
+  successy = lambda x: x + 1
+  return f(successy)(0)
 
 def church_add(f, g):
-  def adeed(x):
-    return f(g(x))
-  return adeed
+  def sumof(h):
+    return lambda x: composer(f(h), g(h)) (x)
+  return sumof
 
 def church_mul(f, g):
   return
