@@ -1,10 +1,10 @@
 def has_seven(n):
   if n == '':
     return False
-  elif (str(n).pop() == '7'):
+  elif (str(n)[0] == '7'):
     return True
   else:
-    return has_seven(n)
+    return has_seven(str(n)[1:])
     
 print(has_seven(3))
 #should be False
