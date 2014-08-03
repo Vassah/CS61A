@@ -60,6 +60,8 @@ print(get_string(word_wo_reps(mwfs('hello'))))
 #should be 'helo'
 print(get_string(word_wo_reps(mwfs('helo'))))
 #should be 'helo'
+print(get_string(word_wo_reps(mwfs('steel'))))
+#should be 'stel'
 
 #So that's finally on track!
 #Onward ho. Since only guess has repetitions, let's just eliminate them
@@ -87,10 +89,10 @@ def make_word_master(goal_word):
       return bad_num_letters
     elif not is_valid_guess(guess):
       return not_a_word
-    elif num_common_letters(guess, goal_word) == word_len:
+    elif get_string(guess) == get_string(goal_word):
       return win_message
     else:
-      return num_common_letters(guess, goal_word)
+      return num_common_letters(goal_word, guess)
   return word_master
 
 def is_valid_guess(word):
@@ -99,6 +101,7 @@ def is_valid_guess(word):
   return True
 
 #Make Tests
+print("\nMake Word Master?")
 foo = make_word_master(mwfs('least'))
 print(foo(mwfs('water')))
 #Should be 3
@@ -113,3 +116,10 @@ print(foo(mwfs('aaaaa')) == not_a_word)
 print(foo(mwfs('least')) == win_message)
 #Should be True
 
+def subsets(lst, n):
+  def saux(listic, j, i)
+    if n == 0:
+      return listic[0]
+    else:
+      return saux(listic[0:j] 
+#I'm tired. This is defeating me.
