@@ -1,3 +1,10 @@
+letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
+           'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
+           'u', 'v', 'w', 'x', 'y', 'z']
+bad_num_letters = "Wrong number of letters."
+not_a_word = "Not a valid word."
+win_message = "Congratulations! You win!"
+
 #We are asked to implement a 'word' abstract data type.
 #Basically, it's an OCaml type of form [Char, [Char]]
 
@@ -75,3 +82,34 @@ print(num_common_letters(mwfs('hello'), mwfs('rid')))
 
 def make_word_master(goal_word):
   word_len = len(get_string(goal_word))
+  def word_master(guess):
+    if len(get_string(guess)) > word_len:
+      return bad_num_letters
+    elif not is_valid_guess(guess):
+      return not_a_word
+    elif num_common_letters(guess, goal_word) == word_len:
+      return win_message
+    else:
+      return num_common_letters(guess, goal_word)
+  return word_master
+
+def is_valid_guess(word):
+  if get_string(word) == 'aaaaa':
+    return False
+  return True
+
+#Make Tests
+foo = make_word_master(mwfs('least'))
+print(foo(mwfs('water')))
+#Should be 3
+print(foo(mwfs('player')) == bad_num_letters)
+#Should be True
+print(foo(mwfs('steel')))
+#Should be 4
+print(foo(mwfs('steal')))
+#Should be 5
+print(foo(mwfs('aaaaa')) == not_a_word)
+#Should be True
+print(foo(mwfs('least')) == win_message)
+#Should be True
+
