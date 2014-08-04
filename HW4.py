@@ -119,10 +119,12 @@ print(foo(mwfs('least')) == win_message)
 def subsets(lst, n):
   listo_slists = []
   def aux(liszt, m):
-    if m == 1:
+    if m == 0:
+      return []
+    elif m == 1:
       return liszt[0]
     for i in range(0, len(lst)):
-      [].append([i].append(aux(liszt[:i] + liszt[i+1:], n - 1)))
+      [].append([i].append(aux(liszt[:i] + liszt[i+1:], m - 1)))
   for j in range(0, len(lst)):
     listo_slists.append(aux(lst[:j] + lst[j+1:], n - 1))
   return listo_slists
