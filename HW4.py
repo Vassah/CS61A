@@ -131,3 +131,19 @@ def subsets(lst, n):
 #This, even if it works, is certainly not the fastest solution since list concatenation is linear time
 
 print(subsets([1, 2, 3], 1))
+
+def compatible(guess, score, letter_list):
+  for i in letter_list:
+    for poss in subsets(guess, score - 1):
+      if make_word_master(mwfl(letter_list)) == score:
+        return True
+  return False
+
+print(compatible(mwfs('steal'), 5, ['l', 'e', 'a', 's', 't']))
+#Should be True
+print(compatible(mwfs('blanket'), 6, ['a', 'b', 'e', 'l', 'n', 'r', 't']))
+#Should be True
+print(compatible(mwfs('cool'), 4, ['c', 'o', 'l', 'd']))
+#Should be False
+print(compatible(mwfs('found'), 1, ['d', 'e', 'f', 'g', 'h']))
+#Should be False
