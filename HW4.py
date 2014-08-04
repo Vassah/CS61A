@@ -117,14 +117,17 @@ print(foo(mwfs('least')) == win_message)
 #Should be True
 
 def subsets(lst, n):
-  lst.sort()
-  listo_slists = [] 
-  def saux(listic, j)
-    if j == 0:
-      return listic[0]
-    else:
-      #tree recursion here
-      for i in range(0, len(listic):
-        return listic[i].join(saux(listic[i:]))
-  return listo_slists.append(saux(lst, n))
+  listo_slists = []
+  def aux(liszt, m):
+    if m == 1:
+      return liszt[0]
+    for i in range(0, len(lst)):
+      [].append([i].append(aux(liszt[:i] + liszt[i+1:], n - 1)))
+  for j in range(0, len(lst)):
+    listo_slists.append(aux(lst[:j] + lst[j+1:], n - 1))
+  return listo_slists
+  
+#First Approximation
 #This, even if it works, is certainly not the fastest solution since list concatenation is linear time
+
+print(subsets([1, 2, 3], 1))
