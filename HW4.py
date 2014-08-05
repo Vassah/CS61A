@@ -162,3 +162,38 @@ sub2 = ['b', 'e', 'l', 't', 'z']
 sub3 = ['s', 't', 'e', 'a', 'l']
 sub4 = ['b', 'l', 'e', 's', 't']
 print(filter_subsets(word, 4, [sub1, sub2, sub3, sub4]))  
+
+def make_deductions(possible_subsets, letters):
+  nilletrus = []
+  for i in range(0, len(letters)):
+    for poss in possible_subsets:
+      if i not in poss:
+        nilletrus.append(letters.pop(i))
+  return letters, nilletrus
+
+def make_deductions(possible_subsets, letters):
+  nilletrus = []
+  letrus = []
+  nonpossible = []
+  possible = []
+  for i in letters:
+    for poss in possible_subsets:
+      if i not in poss:
+        nonpossible.append(i)
+      if i in poss:
+        possible.append(i)
+    if i not in nonpossible:
+      letrus.append(i)
+    if i not in possible:
+      nilletrus.append(i)
+  return letrus, nilletrus
+    
+
+letrus = ['a', 'b', 'c', 'd', 'e', 'f']
+subsis = [['a', 'b', 'c'], ['b', 'a', 'e'], ['e', 'a', 'c']]
+present, not_present = make_deductions(subsis, letrus)
+print(present)
+#Should be 'a'
+print(not_present)
+#Should be ['d', 'f']
+
