@@ -118,27 +118,29 @@ print(foo(mwfs('least')) == win_message)
 
 def subsets(lst, n):
   listo_slists = []
-  def aux(liszt, m):
+  def aux(liszt, m, acc):
     if m == 0:
-      return []
-    elif m == 1:
-      return liszt[0]
-    for i in range(0, len(lst)):
-      [].append([i].append(aux(liszt[:i] + liszt[i+1:], m - 1)))
+      return acc
+    else:
+      for i in range(0, len(liszt)):
+        item = liszt[i]
+        acc.append(item)
+        return aux(liszt[:i] + liszt[i+1:], m - 1, acc)
   for j in range(0, len(lst)):
-    listo_slists.append(aux(lst[:j] + lst[j+1:], n - 1))
+    listo_slists.append(aux(lst[:j] + lst[j+1:], n - 1, [lst[j]]))
   return listo_slists
   
 #First Approximation
 #This, even if it works, is certainly not the fastest solution since list concatenation is linear time
 
 print(subsets([1, 2, 3], 1))
+print(subsets([1, 2, 3], 2))
+print(subsets([1, 2, 3], 3))
 
 def compatible(guess, score, letter_list):
-  for i in letter_list:
-    for poss in subsets(guess, score - 1):
-      if make_word_master(mwfl(letter_list)) == score:
-        return True
+  mastery = make_word_master(mwfl(letter_list))
+  if mastery(guess) == score:
+    return True
   return False
 
 print(compatible(mwfs('steal'), 5, ['l', 'e', 'a', 's', 't']))
