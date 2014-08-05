@@ -152,3 +152,13 @@ print(compatible(mwfs('cool'), 4, ['c', 'o', 'l', 'd']))
 #Should be False
 print(compatible(mwfs('found'), 1, ['d', 'e', 'f', 'g', 'h']))
 #Should be False
+
+def filter_subsets(word, score, possible_subsets):
+  return [poss for poss in possible_subsets if compatible(word, score, poss)]
+
+word = mwfs('steal')
+sub1 = ['a', 'b', 'e', 'l', 's']
+sub2 = ['b', 'e', 'l', 't', 'z']
+sub3 = ['s', 't', 'e', 'a', 'l']
+sub4 = ['b', 'l', 'e', 's', 't']
+print(filter_subsets(word, 4, [sub1, sub2, sub3, sub4]))  
