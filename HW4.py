@@ -117,21 +117,13 @@ print(foo(mwfs('least')) == win_message)
 #Should be True
 
 def subsets(lst, n):
-  listo_slists = []
-  def aux(liszt, m, acc):
-    if m == 0:
-      return acc
-    else:
-      for i in range(0, len(liszt)):
-        item = liszt[i]
-        acc.append(item)
-        return aux(liszt[:i] + liszt[i+1:], m - 1, acc)
-  for j in range(0, len(lst)):
-    listo_slists.append(aux(lst[:j] + lst[j+1:], n - 1, [lst[j]]))
-  return listo_slists
-  
-#First Approximation
-#This, even if it works, is certainly not the fastest solution since list concatenation is linear time
+  if n == 0:
+    return [[]]
+  if len(lst) == n:
+    return [lst]
+  use_first = [ [lst[0]] + x for x in subsets(lst[1:], n - 1)] #recursive step
+  dont_use_first = subsets(lst[1:], n) #step forward, then recurse
+  return use_first + dont_use_first
 
 print(subsets([1, 2, 3], 1))
 #Should be [[1], [2], [3]]
@@ -140,6 +132,7 @@ print(subsets([1, 2, 3], 2))
 print(subsets([1, 2, 3], 3))
 #Should be [[1,2 3], [2,1,3], [3,1,2]
 three_subsets = subsets(list(range(5)), 3)
+print(three_subsets)
 three_subsets.sort()
 for subset in three_subsets:
   print(subset)
