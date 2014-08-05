@@ -134,8 +134,16 @@ def subsets(lst, n):
 #This, even if it works, is certainly not the fastest solution since list concatenation is linear time
 
 print(subsets([1, 2, 3], 1))
+#Should be [[1], [2], [3]]
 print(subsets([1, 2, 3], 2))
+#Should be [[1,2], [1,3], [2,3]]
 print(subsets([1, 2, 3], 3))
+#Should be [[1,2 3], [2,1,3], [3,1,2]
+three_subsets = subsets(list(range(5)), 3)
+three_subsets.sort()
+for subset in three_subsets:
+  print(subset)
+#should be a list of subsets...
 
 def compatible(guess, score, letter_list):
   mastery = make_word_master(mwfl(letter_list))
