@@ -187,7 +187,7 @@ def make_deductions(possible_subsets, letters):
     if i not in possible:
       nilletrus.append(i)
   return letrus, nilletrus
-    
+#Not the most elegant or concise solution, but it works, so go away thank you.
 
 letrus = ['a', 'b', 'c', 'd', 'e', 'f']
 subsis = [['a', 'b', 'c'], ['b', 'a', 'e'], ['e', 'a', 'c']]
@@ -197,3 +197,21 @@ print(present)
 print(not_present)
 #Should be ['d', 'f']
 
+#Now we are to show we have not committed any data abstraction violations
+#We do this by replacing the word ADT with a function implementation
+
+def make_word_from_string(s):
+  lst = [x for x in s]
+  return lambda x: s if x == 0 else lst
+
+def make_word_from_list(lz):
+  stz = ''
+  for i in lz:
+    stz = stz + i
+  return lambda x: stz if x == 0 else lz
+
+def get_string(wrd):
+  return wrd(0)
+
+def get_list(wrd):
+  return wrd(1)
