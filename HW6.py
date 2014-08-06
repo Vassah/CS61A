@@ -103,6 +103,14 @@ def print_linked_list(lz):
   s = s + str(car(lz)) + ' '
   print(s + '>')
 
+def reverse_linked_list(lz):
+  acc = empty
+  while cdr(lz) != empty:
+    acc = cons(car(lz), acc)
+    lz = cdr(lz)
+  acc = cons(car(lz), acc)
+  return acc
+
 def read_until_close(open_expr):
   def aux(oped,acc):
     if oped == None or oped == []:
@@ -112,7 +120,7 @@ def read_until_close(open_expr):
       acc = cons(read_exp(oped), acc)
       return aux(rest, acc)
     elif token == ')':
-      return acc, rest
+      return reverse_linked_list(acc), rest
     else:
       acc = cons(numberize(token), acc)
       return aux(rest, acc)
