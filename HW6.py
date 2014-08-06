@@ -34,3 +34,22 @@ assert '48' in second and '2' in second
 assert '9' in second and '3' in second
 #eval_string(second)
 
+#Converts to number if possible, else does nothing
+def numberize(atomic_exp):
+  try:
+    try:
+      return int(atomic_exp)
+    except ValueError:
+      return float(atomic_exp)
+  except ValueError:
+    return atomic_exp
+
+print(numberize('123'))
+#Should be 123
+print(numberize('3.14159'))
+#Should be 3.14159
+print(numberize('+'))
+#Should be '+'
+
+def read_exp(token_lz):
+  
