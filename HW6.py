@@ -2,6 +2,42 @@ import sys
 sys.path.append("/Users/s42/Documents/CS61A/")
 import ucb
 
+def is_linked_list(lst):
+    """
+    >>> is_linked_list(empty)
+    True
+    >>> is_linked_list(link(1, link(4, link(7, empty))))
+    True
+    >>> is_linked_list(link(1, link(4, 7)))
+    False
+    >>> is_linked_list(link(link(2, empty), empty))
+    True
+    """
+    return lst == empty or (is_pair(lst) and is_linked_list(rest(lst)))
+
+def linked_list_to_str(lst):
+    s = '< '
+    while lst != empty:
+        if is_linked_list(first(lst)):
+            s = s + linked_list_to_str(first(lst)) + ' '
+        else:
+            s = s + repr(first(lst)) + ' '
+        lst = rest(lst)
+    return s + '>'
+
+def print_linked_list(lst):
+    """
+    >>> print_linked_list(empty)
+    < >
+    >>> print_linked_list(link(1, empty))
+    < 1 >
+    >>> print_linked_list(link(2, link(3, link(link(4, empty), empty))))
+    < 2 3 < 4 > >
+    >>> print_linked_list(link(1, link(link(2, link(3, empty)), \
+            link(4, link(link(5, link(6, link(7, empty))), empty)))))
+    < 1 < 2 3 > 4 < 5 6 7 > >
+    """
+    print(linked_list_to_str(lst))
 def tokenize(s):
     """Splits the provided string into a list of tokens.
 
@@ -12,7 +48,28 @@ def tokenize(s):
     s = s.replace(')', ' ) ')
     return s.split()
 
-#Tokenize is given in assignment.
+#Tokenize is given in assignment, as are the linked list functions.
+#These however are mine:
+def car(cell):
+  return cell('car')
+
+def cdr(cell):
+  return cell('cdr')
+
+empty = cons(None, None)
+
+def make_link_list(lz):
+  if lz == []:
+      return empty
+  return cons(lz[0], make_link_list(lz[1:]))
+
+#I assume the last cell of any linked list is cons(a, empty).                               
+def len(linklist):
+  if cdr(linklist) == empty or linklist == empty:
+    return 1 #base case is to add 1 since there's still the car of this last cell to be counted.                                                                                       
+  else:
+    return 1 + len(cdr(linklist))
+
 #Onward.
 #This is to return a scheme expression for:
 # if n == 1 48/(2*(9+3))
@@ -75,34 +132,6 @@ def cons(a, b):
       return b
   return cell
 
-def car(cell):
-  return cell('car')
-
-def cdr(cell):
-  return cell('cdr')
-
-empty = cons(None, None)
-
-def make_link_list(lz):
-  if lz == []:
-      return empty
-  return cons(lz[0], make_link_list(lz[1:]))
-
-#I assume the last cell of any linked list is cons(a, empty).                               
-def len(linklist):
-  if cdr(linklist) == empty or linklist == empty:
-    return 1 #base case is to add 1 since there's still the car of this last cell to be counted.                                                                                       
-  else:
-    return 1 + len(cdr(linklist))
-
-def print_linked_list(lz):
-  s ='<'
-  while cdr(lz) != empty:
-    s = s + str(car(lz)) + ' '
-    lz = cdr(lz)
-  s = s + str(car(lz)) + ' '
-  print(s + '>')
-
 def reverse_linked_list(lz):
   acc = empty
   while cdr(lz) != empty:
@@ -126,6 +155,26 @@ def read_until_close(open_expr):
       return aux(rest, acc)
   return aux(open_expr, empty)
 
+exp, unevaled = read_exp(['(', '+', '1', '3', '6', ')'])
+print_linked_list(exp)
+#Should be < '+' 2 3 6 >
+print(unevaled)
+#Should be []
+exp, unevaled = read_exp(['2', '3'])
+print(exp)
+#Should be 2
+print(unevaled)
+#Should be ['3']
+exp, unevaled = read_exp(['(', '/', '6', '2', ')'. '(', '-', '2', ')'])
+print_linked_list(exp)
+#Should be < '/' 6 2>
+print(unevaled)
+#Should be ['(', '-', '2', ')']
+exp, unevaled = read_exp(['(', '*', '4', '(', '-', '12', '8', ')', ')', '3','2'])
+print_linked_list(exp)
+#Should be < '*' 4 <'-' 12 8 > >
+print(unevaled)
+#['3', '2']
 exp, unevaled = read_until_close(['+', '2', '3', ')', '4', ')'])
 print_linked_list(exp)
 #Should be < '+' 2 3 >
