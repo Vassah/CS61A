@@ -22,14 +22,17 @@ func iffer(cond, truf, failse) {
   }
 I'd love to be able to use this but I think that since go is strongly typed I won't be able to.
 */
-func hailstone(n):
-  if n == 1:
+func hailstone(n) {
+  if n == 1 {
     return 1
-  if n % 2 == 0:
+    }
+  if n % 2 == 0 {
     return hailstone(n / 2)
-  if n % 2 == 1:
+    }
+  if n % 2 == 1 {
     return hailstone(3*n + 1)
-
+    }
+}
 //Done. Now just gotta go home and compile.
   
   
