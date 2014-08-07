@@ -27,13 +27,15 @@ print(lzz)
 reverse_list(lzz)
 print(lzz)
 
-//Now Question 2
+#Now Question 2
 def card(n):
   assert type(n) == int and n > 0 and n <= 13, "Bad card n"
   specials = {1: 'A', 11: 'J', 12: 'Q', 13: 'K'}
   return specials.get(n, str(n))
-//That was given by professor.
-//Now we have to interleave the two halves of the deck.
+
+#That was given by professor.
+#Now we have to interleave the two halves of the deck.
+
 def shuffle(cards):
   i,lent = 0,len(cards) + 1 // 2
   shffled = []
@@ -42,4 +44,4 @@ def shuffle(cards):
     shffled.append(cards[lent+i])
   return shffled
 
-//On to question 3. But later.
+#On to question 3. But later.
