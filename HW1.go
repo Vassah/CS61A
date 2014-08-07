@@ -1,4 +1,4 @@
-def a_abs_plus_b(a, b) {
+func a_abs_plus_b(a, b) {
   if b < 0 {
     return a - b
   }
@@ -7,7 +7,7 @@ def a_abs_plus_b(a, b) {
   }
 }
 
-def two_of_three(a, b, c) {
+func two_of_three(a, b, c) {
   switch {
     case a < min(b, c): return b*b + c*c
     case b < min(a, c): return a*a + c*c
@@ -15,14 +15,14 @@ def two_of_three(a, b, c) {
     }
   }
 /*
-def iffer(cond, truf, failse) {
+func iffer(cond, truf, failse) {
   x = cond and truf
   y = cond or failse
   return x or y
   }
 I'd love to be able to use this but I think that since go is strongly typed I won't be able to.
 */
-def hailstone(n):
+func hailstone(n):
   if n == 1:
     return 1
   if n % 2 == 0:
