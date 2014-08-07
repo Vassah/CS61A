@@ -1,6 +1,6 @@
 import "fmt"
 
-func a_abs_plus_b(a, b) {
+func a_abs_plus_b(a int, b int) int {
   if b < 0 {
     return a - b
   }
@@ -9,7 +9,7 @@ func a_abs_plus_b(a, b) {
   }
 }
 
-func two_of_three(a, b, c) {
+func two_of_three(a int, b int, c int) int {
   switch {
     case a < min(b, c): return b*b + c*c
     case b < min(a, c): return a*a + c*c
@@ -17,17 +17,17 @@ func two_of_three(a, b, c) {
     }
   }
 /*
-func iffer(cond, truf, failse) {
-  x = cond and truf
-  y = cond or failse
-  return x or y
+func iffer(cond bool, truf, failse) {
+  x := cond && truf
+  y := cond || failse
+  return x || y
   }
-I'd love to be able to use this but I think that since go is strongly typed I won't be able to.
+I'd love to be able to use this but I think that since go is strongly typed I won't be able to. We'll see.
+Since you don't HAVE to declare types, maybe it'll be ok.
 */
-func hailstone(n) {
+func hailstone(n int) {
   fmt.println(n)
   if n == 1 {
-    return
     }
   if n % 2 == 0 {
     hailstone(n / 2)
