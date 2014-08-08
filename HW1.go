@@ -11,12 +11,13 @@ func a_abs_plus_b(x int, y int) int {
   }
 }
 
-func two_of_three(a float, b float, c float) float {
+func two_of_three(a float64, b float64, c float64) float64 {
   switch {
     case a < math.Min(b, c): return b*b + c*c
     case b < math.Min(a, c): return a*a + c*c
     case c < math.Min(a, b): return a*a + b*b
     }
+  return 0
   }
 /*
 func iffer(cond bool, truf, failse) {
@@ -27,15 +28,18 @@ func iffer(cond bool, truf, failse) {
 I'd love to be able to use this but I think that since go is strongly typed I won't be able to. We'll see.
 Since you don't HAVE to declare types, maybe it'll be ok.
 */
-func hailstone(n int) {
+func hailstone(n int) int {
   fmt.Println(n)
+  if n == 1 {
+    return n
+  }
   if n % 2 == 0 {
     hailstone(n / 2)
     }
   if n % 2 == 1 {
     hailstone(3*n + 1)
     }
-  return none
+  return 1
 }
 //Done. Now just gotta go home and compile.
   
