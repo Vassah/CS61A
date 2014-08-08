@@ -61,3 +61,19 @@ print(cards[:12])  # Should not be changed
 
 #On to question 3. But later.
 
+def is_circular(G):
+  for v in G:
+    if reaches_circularity(g, V):
+      return True
+  return False
+
+def reaches_circularity(G, v0):
+  def is_path_to_cycle(v1):
+    for w in G[v1]:
+      if v0 == w:
+        return True
+      if is_path_to_cycle(w):
+        return True
+    return False
+  return is_path_to_cycle(v0)
+

@@ -11,16 +11,6 @@ def cons(a, b):
   return cell
 
 def is_linked_list(lst):
-    """
-    >>> is_linked_list(empty)
-    True
-    >>> is_linked_list(link(1, link(4, link(7, empty))))
-    True
-    >>> is_linked_list(link(1, link(4, 7)))
-    False
-    >>> is_linked_list(link(link(2, empty), empty))
-    True
-    """
     return lst == empty or (is_pair(lst) and is_linked_list(rest(lst)))
 
 def linked_list_to_str(lst):
@@ -34,24 +24,9 @@ def linked_list_to_str(lst):
     return s + '>'
 
 def print_linked_list(lst):
-    """
-    >>> print_linked_list(empty)
-    < >
-    >>> print_linked_list(link(1, empty))
-    < 1 >
-    >>> print_linked_list(link(2, link(3, link(link(4, empty), empty))))
-    < 2 3 < 4 > >
-    >>> print_linked_list(link(1, link(link(2, link(3, empty)), \
-            link(4, link(link(5, link(6, link(7, empty))), empty)))))
-    < 1 < 2 3 > 4 < 5 6 7 > >
-    """
     print(linked_list_to_str(lst))
-def tokenize(s):
-    """Splits the provided string into a list of tokens.
 
-    >>> tokenize('(* (+ 12 3) 5)')
-    ['(', '*', '(', '+', '12', '3', ')', '5', ')']
-    """
+def tokenize(s):
     s = s.replace('(', ' ( ')
     s = s.replace(')', ' ) ')
     return s.split()
@@ -185,3 +160,4 @@ print_linked_list(exp)
 #Should be < '+' < '-' 2 > 3 > NOPE DOESN'T WORK
 print(unevaled)
 #Should be [')'] NOPE DOESN'T WORK
+
