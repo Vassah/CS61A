@@ -19,13 +19,19 @@ class Link:
     return '< {}{} >'.format(self.first, rest)
 
   def __iter__(self):
-    def iteratus(obj):
-      try:
-        if obj.rest != empty:
-          obj = obj.rest
-          yield obj.first
-        else:
-          raise StopIteration
-    return iteratus
+    return LinkedListIterator(self)
 
 class LinkedListIterator:
+  def __init__(self, linkl):
+    self.linkl = linkl
+  
+  def __iter__(self):
+    return self
+  
+  def __next__(self):
+    try:
+      if self.rest.first == empty:
+        raise StopIteration
+      else:
+        
+      
