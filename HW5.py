@@ -37,11 +37,27 @@ def card(n):
 #Now we have to interleave the two halves of the deck.
 
 def shuffle(cards):
-  i,lent = 0,len(cards) + 1 // 2
+  assert len(cards) % 2 == 0, 'len(cards) must be even'
+  i,lent = 0,len(cards)// 2
   shffled = []
-  while i <= lent:
+  for i in range(lent):
     shffled.append(cards[i])
-    shffled.append(cards[lent+i])
+    shffled.append(cards[lent + i])
+    i += 1
   return shffled
 
+suits = ['♡', '♢', '♤', '♧']
+cards = [card(n) + suit for n in range(1,14) for suit in suits]
+print(cards[:12])
+#['A♡', 'A♢', 'A♤', 'A♧', '2♡', '2♢', '2♤', '2♧', '3♡', '3♢', '3♤', '3♧']
+print(cards[26:30])
+#['7♤', '7♧', '8♡', '8♢']
+print(shuffle(cards)[:12])
+#['A♡', '7♤', 'A♢', '7♧', 'A♤', '8♡', 'A♧', '8♢', '2♡', '8♤', '2♢', '8♧']
+print(shuffle(shuffle(cards))[:12])
+#['A♡', '4♢', '7♤', '10♧', 'A♢', '4♤', '7♧', 'J♡', 'A♤', '4♧', '8♡', 'J♢']
+print(cards[:12])  # Should not be changed
+#['A♡', 'A♢', 'A♤', 'A♧', '2♡', '2♢', '2♤', '2♧', '3♡', '3♢', '3♤', '3♧']
+
 #On to question 3. But later.
+

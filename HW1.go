@@ -1,19 +1,21 @@
-import "fmt"
+package main
 
-func a_abs_plus_b(a int, b int) int {
-  if b < 0 {
-    return a - b
-  }
-  else {
-    return a + b
+import "fmt"
+import "math"
+
+func a_abs_plus_b(x int, y int) int {
+  if x < 0 {
+    return x - y
+  } else {
+    return x + y
   }
 }
 
-func two_of_three(a int, b int, c int) int {
+func two_of_three(a float, b float, c float) float {
   switch {
-    case a < min(b, c): return b*b + c*c
-    case b < min(a, c): return a*a + c*c
-    case c < min(a, b): return a*a + b*b
+    case a < math.Min(b, c): return b*b + c*c
+    case b < math.Min(a, c): return a*a + c*c
+    case c < math.Min(a, b): return a*a + b*b
     }
   }
 /*
@@ -26,24 +28,23 @@ I'd love to be able to use this but I think that since go is strongly typed I wo
 Since you don't HAVE to declare types, maybe it'll be ok.
 */
 func hailstone(n int) {
-  fmt.println(n)
-  if n == 1 {
-    }
+  fmt.Println(n)
   if n % 2 == 0 {
     hailstone(n / 2)
     }
   if n % 2 == 1 {
     hailstone(3*n + 1)
     }
+  return none
 }
 //Done. Now just gotta go home and compile.
   
 func main() {
-  fmt.println(two_of_three(5,6,7))
-  fmt.println(two_of_three(6,5,7))
-  fmt.println(two_of_three(6,7,5))
-  fmt.println(a_abs_plus_b(5,-6))
-  fmt.println(a_abs_plus_b(5,6))
+  fmt.Println(two_of_three(5,6,7))
+  fmt.Println(two_of_three(6,5,7))
+  fmt.Println(two_of_three(6,7,5))
+  fmt.Println(a_abs_plus_b(5,-6))
+  fmt.Println(a_abs_plus_b(5,6))
   hailstone(10)
   hailstone(27)
 }
