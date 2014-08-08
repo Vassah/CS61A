@@ -2,6 +2,14 @@ import sys
 sys.path.append("/Users/s42/Documents/CS61A/")
 import ucb
 
+def cons(a, b):
+  def cell(message):
+    if message == 'car':
+      return a
+    else:
+      return b
+  return cell
+
 def is_linked_list(lst):
     """
     >>> is_linked_list(empty)
@@ -124,14 +132,6 @@ def read_exp(token_lz):
   else:
     return read_exp(rest)
 
-def cons(a, b):
-  def cell(message):
-    if message == 'car':
-      return a
-    else:
-      return b
-  return cell
-
 def reverse_linked_list(lz):
   acc = empty
   while cdr(lz) != empty:
@@ -165,7 +165,7 @@ print(exp)
 #Should be 2
 print(unevaled)
 #Should be ['3']
-exp, unevaled = read_exp(['(', '/', '6', '2', ')'. '(', '-', '2', ')'])
+exp, unevaled = read_exp(['(', '/', '6', '2', ')', '(', '-', '2', ')'])
 print_linked_list(exp)
 #Should be < '/' 6 2>
 print(unevaled)
