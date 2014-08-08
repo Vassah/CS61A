@@ -41,24 +41,37 @@ class Amount(object):
   def __init__(self, nickels, pennies):
     self.nickels = nickels
     self.pennies = pennies
-    
-    @property
-    def value(self):
-       return 5*self.nickels + self.pennies
 
-    @value.setter
-    def value(self, value):
-       self.nickels = value // 5
-       self.pennies = value % 5
+  @property
+  def value(self):
+    return 5*self.nickels + self.pennies
+
+  @value.setter
+  def value(self, value):
+    self.nickels = value // 5
+    self.pennies = value % 5
 
 a = Amount(3, 7)
 print(a.nickels)
 print(a.pennies)
-print(a.value)
+q = a.value
+print(q)
 a.nickels = 5
-print(a.value)
+q = a.value
+print(q)
 
 class MinimalAmount(Amount):
   def __init__(self, nickels, pennies):
     self.nickels = nickels + pennies // 5
     self.pennies = pennies % 5
+
+print("\nMinimalAmount?")
+a = MinimalAmount(3, 7)
+m = a.nickels, a.pennies, a.value
+print(m)
+a = MinimalAmount(7, 3)
+m = a.nickels, a.pennies, a.value
+print(m)
+a = MinimalAmount(0,50)
+m = a.nickels, a.pennies, a.value
+print(m)
