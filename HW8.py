@@ -124,3 +124,16 @@ p.deposit(21)
 p.vend()
 
 #Q5
+class MissManners(object):
+  #Miss manners is passed a object. I'm calling it clx_o for class x object
+  def __init__(self, clx_obj):
+    self.obj = clx_obj
+  
+  def ask(self, message, *args):
+    if 'please' in message[:6]:
+      if has_attr(self.obj, message):
+        get_attr(self.obj, message)(*args)
+      else:
+        print("Thanks for asking, but I don't know how to {0}.".format(message - 'please '))
+    else:
+      print('You must learn to say please first.')
