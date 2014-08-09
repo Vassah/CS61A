@@ -97,7 +97,7 @@ class MathPuzzle:
 
 def solve_list_perms(puzzle):
   #Q3 Main Function
-  possibilus = list_perms(puzzle.range)
+  possibilus = list_perms(puzzle.range) #Not actually the right entity to loop over
   for poss in possibilus:
     if puzzle.check_solution(poss):
       return poss
@@ -107,11 +107,11 @@ def solve_list_perms(puzzle):
 #Q3
 def generate_perms(lst):
   if lst == []:
-  	yield [[]]
+  	yield []
   else:
     for i in range(len(lst)):
       for perm in generate_perms(lst[:i]+lst[i+1:]):
-      	yield [i] + perm
+      	yield [lst[i]] + perm
 
 perms = generate_perms([1,2,3])
 print(hasattr(perms, '__next__'))
@@ -120,7 +120,10 @@ p.sort()
 print(p)
 
 def solve_gen_perms(puzzle):
-  return
+  for possible in generate_perms(puzzle.range): #Not actually right entity to loop over
+    if puzzle.check_solution(poss):
+    	return poss
+  return None
 
 class TestPuzzle(MathPuzzle):
     """
