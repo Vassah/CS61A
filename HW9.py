@@ -151,26 +151,15 @@ class TestPuzzle(MathPuzzle):
 ##############
 
 def remainders_generator(m):
-    """
-    Takes in an integer m, and yields m different remainder groups
-    of m. 
+  def multiples(n):
+    prev = n
+    while True:
+    	yield	prev
+    	prev = prev + m
+  for i in range(m):
+    yield multiples(i)
 
-    >>> remainders_mod_four = remainders_generator(4)
-    >>> for rem_group in remainders_mod_four:
-    ...     for i in range(3):
-    ...         next(rem_group)
-    ...
-    0
-    4
-    8
-    1
-    5
-    9
-    2
-    6
-    10
-    3
-    7
-    11
-    """
-    "*** YOUR CODE HERE ***"
+rem_group = remainders_generator(4)
+for rem in rem_group:
+  for i in range(3):
+    print(next(rem))
