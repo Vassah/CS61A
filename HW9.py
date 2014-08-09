@@ -58,14 +58,19 @@ for m in l2:
 	print(m)
 
 #Q2
-def list_perms(lz):
-  if lz == []:
-    return []
-  prev_perms = list_perms(lz[1:])
-  result = [prev + lz[i] for i in range(0, len(lz)) for prev in prev_perms]
+def list_perms(lst):
+  if lst == []:
+    return [[]]
+  result = []
+  for i in range(len(lst)):
+    result += [[lst[i]] + perm for perm in list_perms(lst[:i] + lst[i+1:])]
   return result
 
-print(list_perms([1,2,3]))
+
+print(str(list_perms([1,2,3])))
+print(list_perms([2,1,3]))
+
+
 #Q3
 def interleave(seq, other):
     #DO NOT USE IN SOLUTION Given by professor
@@ -103,15 +108,14 @@ def solve_list_perms(puzzle):
 
 #Q3
 def generate_perms(lst):
-  if lst == []:
-    yield []
-  prev_perms = generate_perms(lst[1:])
-  results = (prev + [lst[i]] for i in range(0, len(lst)) for prev in prev_perms)
-  i = 0
-  print(list(results))
+  def gen_perms(lz):
+    if lz == []:
+      yield [[]]
+    result = ([lz[i]] + perm for perm in gen_perms(lz[:i] + lz[i+1:]) for i in range(len(lz)))
+    yield result
+  results = gen_perms(lst)
   for result in results:
     yield result
-  
 
 perms = generate_perms([1,2,3])
 print(hasattr(perms, '__next__'))
