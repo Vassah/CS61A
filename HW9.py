@@ -105,10 +105,12 @@ def solve_list_perms(puzzle):
 def generate_perms(lst):
   if lst == []:
     yield []
-  prev_perms = generate_perms(lst)
-  results = (prev + lst[i] for i in range(0, len(lst)) for prev in prev_perms)
+  prev_perms = generate_perms(lst[1:])
+  results = (prev + [lst[i]] for i in range(0, len(lst)) for prev in prev_perms)
+  i = 0
+  print(list(results))
   for result in results:
-  	yield result
+    yield result
   
 
 perms = generate_perms([1,2,3])
