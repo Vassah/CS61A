@@ -102,14 +102,13 @@ def solve_list_perms(puzzle):
 
 
 #Q3
-#Unfortunately, since generators aren't full coroutines this is kind of trickier than I'd like.
-#e.g. this doesn't work and using yield from doesn't either;
 def generate_perms(lst):
   if lst == []:
     yield []
-  for i in range(0, len(lst)):
-    yield [i] + generate_perms(lst[:i]+lst[i+1:])
-
+  prev_perms = generate_perms(lst)
+  results = (prev + lst[i] for i in range(0, len(lst)) for prev in prev_perms)
+  for result in results:
+  	yield result
   
 
 perms = generate_perms([1,2,3])
