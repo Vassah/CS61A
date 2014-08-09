@@ -70,8 +70,6 @@ def list_perms(lst):
 print(str(list_perms([1,2,3])))
 print(list_perms([2,1,3]))
 
-
-#Q3
 def interleave(seq, other):
     #DO NOT USE IN SOLUTION Given by professor
     result = list(seq)
@@ -108,14 +106,12 @@ def solve_list_perms(puzzle):
 
 #Q3
 def generate_perms(lst):
-  def gen_perms(lz):
-    if lz == []:
-      yield [[]]
-    result = ([lz[i]] + perm for perm in gen_perms(lz[:i] + lz[i+1:]) for i in range(len(lz)))
-    yield result
-  results = gen_perms(lst)
-  for result in results:
-    yield result
+  if lst == []:
+  	yield [[]]
+  else:
+    for i in range(len(lst)):
+      for perm in generate_perms(lst[:i]+lst[i+1:]):
+      	yield [i] + perm
 
 perms = generate_perms([1,2,3])
 print(hasattr(perms, '__next__'))
