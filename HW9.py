@@ -102,16 +102,15 @@ def solve_list_perms(puzzle):
 
 
 #Q3
+#Unfortunately, since generators aren't full coroutines this is kind of trickier than I'd like.
+#e.g. this doesn't work and using yield from doesn't either;
 def generate_perms(lst):
-  def permute(lz):
-    if lz == []:
-      return []
-    else:
-      return [random.choice(lz)] + permute(lz[1:])
-  perm = permute(lst)
-  while perm != lst:
-    perm = permute(perm)
-    yield lst
+  if lst == []:
+    yield []
+  for i in range(0, len(lst)):
+    yield [i] + generate_perms(lst[:i]+lst[i+1:])
+
+  
 
 perms = generate_perms([1,2,3])
 print(hasattr(perms, '__next__'))
