@@ -1,6 +1,4 @@
-package hw2
-
-import "fmt"
+package main
 
 type intFun func(int) int
 
