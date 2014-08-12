@@ -22,13 +22,13 @@ class BST:
 #MY CODE
     def paths(self):
         if not self.right and not self.left:
-            'RESULT'
+            return
+        if CONDITION:
+            for TS in ITERABLE:
+                return
         if 'CONDITION':
             for VARIABLE in 'ITERABLE':
-                'RESULT'
-        if 'CONDITION':
-            for VARIABLE in 'ITERABLE':
-                'RESULT'
+                return
 #END MY CODE
 
 #Q4
@@ -38,4 +38,4 @@ def deal_deck(linked_list, num_of_players):
     for thing in 'ITERABLE':
       linked_list, card = linked_list.rest, linked_list
       'RESULT'
-   return 'RESULT
+   return 'RESULT'
