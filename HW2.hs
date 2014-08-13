@@ -26,4 +26,4 @@ repeated fz n = (\ x -> fz (repeated fz (n - 1)))
 
 double fz = repeated fz 2
 
-main = putStrLn (show (seq_product 5 identat) ++ show (factorialus 5) ++ show (accumulate (\x y -> x * y) 1 5 (\x -> x)))
+main = putStrLn (show (seq_product 5 identat) ++ show (factorialus 5) ++ show (accumulate (\x y -> x * y) 1 5 (\x -> x)) ++ show ((repeated (\x -> x + 2) 5) 2)) 
